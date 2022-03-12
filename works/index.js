@@ -1,4 +1,4 @@
-import { getGitTag } from '../services/index'
+import { getGitTag } from '../services/index.js'
 
 
 const works = {
