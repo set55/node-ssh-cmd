@@ -13,6 +13,26 @@ inputs:
     description: 'command label'
     required: true
     default: ''
+  git-repo:
+    description: 'git repo name'
+    required: false
+    default: ''
+  repo-name:
+    description: 'repo directory name'
+    required: false
+    default: ''
+  image-name:
+    description: 'docker image name'
+    required: false
+    default: 'express-img'
+  container-name:
+    description: 'docker container name'
+    required: false
+    default: ''
+  container-port:
+    description: 'docker container out port'
+    required: false
+    default: ''
 outputs:
   time: # id of output
     description: 'The time we greeted you'

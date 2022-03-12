@@ -9,40 +9,27 @@ import { ssh } from './services/index.js'
 import works from './works/index.js'
 
 try {
-    // `who-to-greet` input defined in action metadata file
+    // required
     const privateKey = core.getInput('private-key')
     const ip = core.getInput('server-ip')
     const workTarget = core.getInput('work-target')
+
+    // not require
+    const gitRepo = core.getInput('git-repo')
+    const repoName = core.getInput('repo-name')
+    const imageName = core.getInput('image-name')
+    const containerName = core.getInput('container-name')
+    const containerPort = core.getInput('container-port')
+
     console.log('begin ssh to server')
     const time = (new Date()).toTimeString()
     core.setOutput("time", time)
 
     let client = new ssh(ip, privateKey)
+    let worker = new works(gitRepo, repoName, imageName, containerName, containerPort)
 
-    client.exec(works[workTarget])
+    client.exec(worker.workCmd(workTarget))
 
-
-
-    // const conn = new Client()
-    // conn.on('ready', () => {
-    //     console.log('Client :: ready')
-    //     conn.exec('sudo docker build -t express-img2 express-server', (err, stream) => {
-    //         if (err) throw err
-    //         stream.on('close', (code, signal) => {
-    //             console.log('Stream :: close :: code: ' + code + ', signal: ' + signal)
-    //             conn.end()
-    //         }).on('data', (data) => {
-    //             console.log('STDOUT: ' + data)
-    //         }).stderr.on('data', (data) => {
-    //             console.log('STDERR: ' + data)
-    //         });
-    //     });
-    // }).connect({
-    //     host: ip,
-    //     port: 22,
-    //     username: 'ubuntu',
-    //     privateKey: privateKey
-    // })
 
     // Get the JSON webhook payload for the event that triggered the workflow
     const payload = JSON.stringify(github.context.payload, undefined, 2)
