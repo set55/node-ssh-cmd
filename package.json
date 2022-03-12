@@ -10,6 +10,7 @@
     "type": "git",
     "url": "git@set.github.com:set55/node-ssh-cmd.git"
   },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
