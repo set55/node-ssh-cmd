@@ -1,10 +1,18 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'node-ssh-cmd'
+description: 'ssh ec2 command'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  private-key:
+    description: 'aws private-key'
     required: true
-    default: 'World'
+    default: ''
+  server-ip:
+    description: 'aws ec2 server ip'
+    required: true
+    default: ''
+  work-target:
+    description: 'command label'
+    required: true
+    default: ''
 outputs:
   time: # id of output
     description: 'The time we greeted you'
