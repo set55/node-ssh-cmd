@@ -13,7 +13,7 @@ try {
     const conn = new Client();
     conn.on('ready', () => {
         console.log('Client :: ready');
-        conn.exec('cd express-server && git pull && docker build -t express-img2 .', (err, stream) => {
+        conn.exec('cd express-server && sudo git pull && sudo docker build -t express-img2 .', (err, stream) => {
             if (err) throw err;
             stream.on('close', (code, signal) => {
                 console.log('Stream :: close :: code: ' + code + ', signal: ' + signal);
