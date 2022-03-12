@@ -1,4 +1,4 @@
 import ssh from './ssh.js'
-import getGitTag from "./get-tag";
+import getGitTag from "./get-tag.js";
 
 export  { ssh, getGitTag }
