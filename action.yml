@@ -33,6 +33,10 @@ inputs:
     description: 'docker container out port'
     required: false
     default: ''
+  environment:
+    description: 'docker run environment'
+    required: false
+    default: ''
 outputs:
   time: # id of output
     description: 'The time we greeted you'
