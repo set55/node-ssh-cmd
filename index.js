@@ -20,13 +20,14 @@ try {
     const imageName = core.getInput('image-name')
     const containerName = core.getInput('container-name')
     const containerPort = core.getInput('container-port')
+    const environment = core.getInput('environment')
 
     console.log('begin ssh to server')
     const time = (new Date()).toTimeString()
     core.setOutput("time", time)
 
     let client = new ssh(ip, privateKey)
-    let worker = new works(gitRepo, repoName, imageName, containerName, containerPort)
+    let worker = new works(gitRepo, repoName, imageName, containerName, containerPort, environment)
 
     client.exec(worker.workCmd(workTarget))
 
