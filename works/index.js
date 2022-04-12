@@ -12,7 +12,7 @@ class works {
         this.params = {
             updateGit: `sudo rm -rf ${repoName} && git clone git@github.com:${gitRepo} && cd ${repoName} && sudo git checkout ${getGitTag()}`,
             build: `sudo docker rmi -f ${imageName} && sudo docker build -t ${imageName} ${repoName}`,
-            run: `sudo docker run -d ${environment} --name=${containerName} -p ${containerPort}:80 ${imageName}`
+            run: `sudo docker stop ${containerName} && sudo docker rm ${containerName} && sudo docker run -d ${environment} --name=${containerName} -p ${containerPort}:80 ${imageName}`
         }
     }
 
