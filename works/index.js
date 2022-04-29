@@ -10,7 +10,7 @@ import { getGitTag } from '../services/index.js'
 class works {
     constructor(gitRepo = '', repoName = '', imageName = '', containerName = '', containerPort = '', environment = '') {
         this.params = {
-            updateGit: `cd ${repoName} && sudo git fetch --all --tags && sudo git checkout ${getGitTag()}`,
+            updateGit: `cd ${repoName} && git fetch && git checkout ${getGitTag()}`,
             build: `sudo docker rmi -f ${imageName} && sudo docker build -t ${imageName} ${repoName}`,
             run: `sudo docker stop ${containerName} && sudo docker rm ${containerName} && sudo docker run -d ${environment} --name=${containerName} -p ${containerPort}:80 ${imageName}`
         }
