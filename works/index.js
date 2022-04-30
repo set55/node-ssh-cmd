@@ -8,12 +8,12 @@ import { getGitTag } from '../services/index.js'
 // }
 
 class works {
-    constructor(gitRepo = '', repoName = '', imageName = '', containerName = '', containerPort = '', environment = '') {
+    constructor(gitRepo = '', repoName = '', imageName = '', containerName = '', containerPort = '', environment = '', volumes = '') {
         this.params = {
             updateGit: `cd ${repoName} && git fetch && git checkout ${getGitTag()}`,
             stopContainer: `sudo docker stop ${containerName} && sudo docker rm ${containerName}`,
             build: `sudo docker rmi -f ${imageName} && sudo docker build -t ${imageName} ${repoName}`,
-            run: `sudo docker run -d --add-host=host.docker.internal:host-gateway ${environment} --name=${containerName} -p ${containerPort}:80 ${imageName}`
+            run: `sudo docker run -d --add-host=host.docker.internal:host-gateway ${environment} ${volumes} --name=${containerName} -p ${containerPort}:80 ${imageName}`
         }
     }
 
