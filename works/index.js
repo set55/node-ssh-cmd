@@ -11,7 +11,8 @@ class works {
     constructor(gitRepo = '', repoName = '', imageName = '', containerName = '', containerPort = '', environment = '') {
         this.params = {
             updateGit: `cd ${repoName} && git fetch && git checkout ${getGitTag()}`,
-            build: `sudo docker stop ${containerName} && sudo docker rm ${containerName} && sudo docker rmi -f ${imageName} && sudo docker build -t ${imageName} ${repoName}`,
+            stopContainer: `sudo docker stop ${containerName} && sudo docker rm ${containerName}`,
+            build: `sudo docker rmi -f ${imageName} && sudo docker build -t ${imageName} ${repoName}`,
             run: `sudo docker run -d --add-host=host.docker.internal:host-gateway ${environment} --name=${containerName} -p ${containerPort}:80 ${imageName}`
         }
     }
