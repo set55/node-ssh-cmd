@@ -3,9 +3,10 @@ const { Client } = ssh2
 
 
 class ssh {
-    constructor(ip, privateKey) {
+    constructor(ip, privateKey, userName) {
         this.ip = ip;
         this.privateKey = privateKey;
+        this.userName = userName;
         this.conn = new Client();
     }
 
@@ -27,7 +28,7 @@ class ssh {
         }).connect({
             host: this.ip,
             port: 22,
-            username: 'ubuntu',
+            username: this.userName,
             privateKey: this.privateKey
         })
     }

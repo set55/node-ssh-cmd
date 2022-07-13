@@ -1,6 +1,10 @@
 name: 'node-ssh-cmd'
 description: 'ssh ec2 command'
 inputs:
+  ssh-username:
+    description: 'ssh username'
+    required: true
+    default: 'root'
   private-key:
     description: 'aws private-key'
     required: true

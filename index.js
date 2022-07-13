@@ -10,6 +10,7 @@ import works from './works/index.js'
 
 try {
     // required
+    const sshUserName = core.getInput('ssh-user-name')
     const privateKey = core.getInput('private-key')
     const ip = core.getInput('server-ip')
     const workTarget = core.getInput('work-target')
@@ -27,7 +28,7 @@ try {
     const time = (new Date()).toTimeString()
     core.setOutput("time", time)
 
-    let client = new ssh(ip, privateKey)
+    let client = new ssh(ip, privateKey, sshUserName)
     let worker = new works(gitRepo, repoName, imageName, containerName, containerPort, environment, volumes)
 
     client.exec(worker.workCmd(workTarget))
