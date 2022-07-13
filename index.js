@@ -10,7 +10,7 @@ import works from './works/index.js'
 
 try {
     // required
-    const sshUserName = core.getInput('ssh-user-name')
+    const sshUserName = core.getInput('ssh-username')
     const privateKey = core.getInput('private-key')
     const ip = core.getInput('server-ip')
     const workTarget = core.getInput('work-target')
